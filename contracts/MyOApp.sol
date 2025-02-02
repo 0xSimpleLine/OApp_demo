@@ -6,9 +6,10 @@ import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { OApp, MessagingFee, Origin } from "@layerzerolabs/oapp-evm/contracts/oapp/OApp.sol";
 import { MessagingReceipt } from "@layerzerolabs/oapp-evm/contracts/oapp/OAppSender.sol";
 import { OAppOptionsType3 } from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OAppOptionsType3.sol";
+import {OAppRead} from "@layerzerolabs/oapp-evm/contracts/oapp/OAppRead.sol";
 
-contract MyOApp is OApp, OAppOptionsType3 {
-    constructor(address _endpoint, address _delegate) OApp(_endpoint, _delegate) Ownable(_delegate) {}
+contract MyOApp is OApp, OAppOptionsType3, OAppRead {
+    constructor(address _endpoint, address _delegate) OApp(_endpoint, _delegate) Ownable(_delegate) OAppRead(_endpoint, _delegate) {}
 
     string public data = "Nothing received yet.";
 
